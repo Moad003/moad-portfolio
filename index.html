@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moad El Mokaddam — IT Technician & ASIX</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+    /* ─── HERO PHOTO ─── */
+    .hero-photo-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 2rem;
+    }
+    .hero-photo {
+      width: 270px;
+      height: 340px;
+      object-fit: cover;
+      border-radius: 1.5rem;
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 32px rgba(0,212,255,0.12), 0 2px 8px rgba(0,0,0,0.18);
+      background: var(--bg2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero-photo:hover {
+      transform: scale(1.04) rotate(-1deg);
+      box-shadow: 0 16px 48px rgba(0,212,255,0.18), 0 4px 16px rgba(0,0,0,0.22);
+    }
+    .hero-photo-shadow {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 28px;
+      background: radial-gradient(ellipse at center, rgba(0,212,255,0.10) 0%, transparent 80%);
+      filter: blur(4px);
+      z-index: -1;
+    }
+  :root {
+    --bg: #f8fafc;
+    --bg2: #f1f5f9;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --accent: #2563eb;
+    --accent2: #22d3ee;
+    --accent3: #fbbf24;
+    --text: #22223b;
+    --muted: #6c757d;
+    --dim: #e5e7eb;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridFloat 20s ease-in-out infinite;
+  }
+
+  @keyframes gridFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  h1 .name-accent {
+    color: var(--accent);
+    -webkit-text-stroke: unset;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s ease 0.2s both;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    animation: fadeUp 0.8s ease 0.3s both;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  .btn-primary:hover {
+    background: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 212, 255, 0.25);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  /* Terminal card */
+  .terminal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    animation: fadeUp 0.8s ease 0.4s both;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0, 212, 255, 0.05);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .terminal-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.9;
+  }
+
+  .t-line { display: flex; gap: 0.5rem; }
+  .t-prompt { color: var(--accent); }
+  .t-cmd { color: var(--text); }
+  .t-out { color: var(--muted); padding-left: 1.5rem; }
+  .t-key { color: var(--accent2); }
+  .t-val { color: #7ec7a2; }
+  .t-comment { color: #3d5a6e; }
+
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 1.1em;
+    background: var(--accent);
+    vertical-align: middle;
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 4rem;
+  }
+
+  /* ─── EXPERIENCE TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.6s ease;
+  }
+
+  .timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 6px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.15), 0 0 15px rgba(0, 212, 255, 0.4);
+    margin-left: -6px;
+  }
+
+  .timeline-dot.purple { background: var(--accent2); box-shadow: 0 0 0 4px rgba(123, 97, 255, 0.15), 0 0 15px rgba(123, 97, 255, 0.4); }
+  .timeline-dot.orange { background: var(--accent3); box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15), 0 0 15px rgba(255, 107, 53, 0.4); }
+
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-company {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+  }
+
+  .timeline-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .timeline-list li {
+    color: var(--text);
+    font-size: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .timeline-list li::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.05em;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.75rem;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover {
+    border-color: rgba(0, 212, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .skill-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .skill-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-level {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-bar-track {
+    height: 3px;
+    background: var(--dim);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(to right, var(--accent), var(--accent2));
+  }
+
+  /* ─── LANGUAGES ─── */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .lang-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .lang-card.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .lang-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.03);
+  }
+
+  .lang-flag { font-size: 2rem; margin-bottom: 0.75rem; }
+  .lang-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .lang-level {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s;
+  }
+
+  .edu-card.visible { opacity: 1; transform: translateY(0); }
+
+  .edu-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.08);
+  }
+
+  .edu-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .edu-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .edu-school {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .edu-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #28c840;
+    letter-spacing: 0.05em;
+  }
+  .edu-status.ongoing { color: var(--accent3); }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+  }
+
+  .contact-item:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.03);
+    transform: translateX(6px);
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-text { display: flex; flex-direction: column; }
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.2rem;
+  }
+  .contact-value { font-size: 0.95rem; }
+
+  .info-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+  }
+
+  .info-box h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(30, 45, 61, 0.5);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  .info-row:last-child { border-bottom: none; }
+  .info-row-icon { color: var(--accent); }
+  .info-row-label { color: var(--muted); min-width: 120px; }
+  .info-row-val { color: var(--text); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── PERSONAL SKILLS TAGS ─── */
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.73rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .tag.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(0, 212, 255, 0.05);
+    transform: translateY(-2px);
+  }
+
+  /* ─── SEPARATOR ─── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0 3rem;
+    width: calc(100% - 6rem);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+    section { padding: 4rem 1.5rem; }
+    #contact { padding: 4rem 1.5rem; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">moad@portfolio:~$</div>
+  <ul class="nav-links">
+    <li><a href="#about">Perfil</a></li>
+    <li><a href="#experience">Experiència</a></li>
+    <li><a href="#skills">Habilitats</a></li>
+    <li><a href="#education">Formació</a></li>
+    <li><a href="#contact">Contacte</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="about" style="padding:0; max-width:100%;">
+<div id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Disponibilitat horària total</div>
+      <h1>Moad<br><span class="name-accent">El Mokaddam</span></h1>
+      <p class="hero-desc">Tècnic IT (ASIX) especialitzat en xarxes, suport tècnic i optimització de processos. Combina visió de negoci i agilitat en la resolució d'incidències tecnològiques.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Contactar ↗</a>
+        <a href="#experience" class="btn-outline">Veure Experiència</a>
+      </div>
+    </div>
+    <div class="hero-photo-card">
+      <img src="images/Gemini_Generated_Image_ht9fx9ht9fx9ht9f.png" alt="Foto de Moad El Mokaddam" class="hero-photo" />
+      <div class="hero-photo-shadow"></div>
+    </div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="terminal-title">moad_profile.json</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cat moad_profile.json</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"nom"</span>: <span class="t-val">"Moad El Mokaddam"</span>,</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"rol"</span>: <span class="t-val">"Tècnic IT · ASIX"</span>,</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"ubicació"</span>: <span class="t-val">"Lleida, Catalunya"</span>,</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"idiomes"</span>: [<span class="t-val">"CA"</span>, <span class="t-val">"ES"</span>, <span class="t-val">"EN"</span>, <span class="t-val">"FR"</span>, <span class="t-val">"AR"</span>],</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"stack"</span>: [<span class="t-val">"Python"</span>, <span class="t-val">"SQL"</span>, <span class="t-val">"CMD"</span>, <span class="t-val">"Networks"</span>],</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"disponible"</span>: <span class="t-val">true</span>,</span></div>
+        <div class="t-line"><span class="t-out"><span class="t-key">"carnet"</span>: <span class="t-val">"B (en procés)"</span></span></div>
+        <div class="t-line" style="margin-top:0.5rem;"><span class="t-prompt">$</span> <span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Historial laboral</div>
+  <h2>Experiència</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">OCTUBRE 2025 — ABRIL 2026</div>
+      <div class="timeline-company">Grup Nayox</div>
+      <div class="timeline-role">// Informàtic</div>
+      <ul class="timeline-list">
+        <li>Revisió de servidors i instal·lació de switches</li>
+        <li>Manteniment d'equips i instal·lació de programari</li>
+        <li>Gestió de plataformes Microsoft i suport tècnic</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot orange"></div>
+      <div class="timeline-date">JUNY 2025 — SETEMBRE 2025</div>
+      <div class="timeline-company">Bordeta Producer Group S.L.</div>
+      <div class="timeline-role">// Operari i Administració</div>
+      <ul class="timeline-list">
+        <li>Operari de Magatzem i Maquinària</li>
+        <li>Gestió de factures</li>
+        <li>Etiquetes i codis de barres</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot purple"></div>
+      <div class="timeline-date">OCTUBRE 2022 — SETEMBRE 2024</div>
+      <div class="timeline-company">Gestoría Latorre</div>
+      <div class="timeline-role">// Administratiu</div>
+      <ul class="timeline-list">
+        <li>Gestió i arxiu de documents administratius</li>
+        <li>Comptabilitat i tramitació d'impostos</li>
+        <li>Atenció al client i resolució de consultes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Capacitats tècniques</div>
+  <h2>Habilitats</h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-level">EN APRENENTATGE ACTIU</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="55"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL Server</div>
+      <div class="skill-level">OPTIMITZACIÓ DE BD</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Xarxes & Seguretat</div>
+      <div class="skill-level">ASIX — XARXES</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🖥️</div>
+      <div class="skill-name">Hardware & Sistemes</div>
+      <div class="skill-level">MANTENIMENT & CONFIGURACIÓ</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <div class="skill-name">Microsoft Office</div>
+      <div class="skill-level">NIVELL AVANÇAT</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Plataformes Microsoft</div>
+      <div class="skill-level">GESTIÓ & SUPORT TÈCNIC</div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top: 4rem;">
+    <div class="section-label" style="margin-bottom: 1.5rem;">Competències personals</div>
+    <div class="tags-cloud">
+      <span class="tag">Treball en equip</span>
+      <span class="tag">Adaptabilitat</span>
+      <span class="tag">Comunicació efectiva</span>
+      <span class="tag">Organització i planificació</span>
+      <span class="tag">Gestió del temps</span>
+      <span class="tag">Atenció al detall</span>
+      <span class="tag">Resolució de problemes</span>
+      <span class="tag">Aprenentatge continu</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LANGUAGES -->
+<section id="languages">
+  <div class="section-label">Comunicació global</div>
+  <h2>Idiomes</h2>
+  <div class="lang-grid">
+    <div class="lang-card">
+      <div class="lang-flag">🇲🇦</div>
+      <div class="lang-name">Àrab</div>
+      <div class="lang-level">NADIU</div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-flag">🇪🇸</div>
+      <div class="lang-name">Castellà</div>
+      <div class="lang-level">NADIU</div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-flag">🏴󠁥󠁳󠁣󠁴󠁿</div>
+      <div class="lang-name">Català</div>
+      <div class="lang-level">NIVELL ALT</div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-flag">🇬🇧</div>
+      <div class="lang-name">Anglès</div>
+      <div class="lang-level">B1</div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-flag">🇫🇷</div>
+      <div class="lang-name">Francès</div>
+      <div class="lang-level">NIVELL MITJÀ</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Formació acadèmica</div>
+  <h2>Educació</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-badge">EN CURS — FI 05/2026</div>
+      <div class="edu-title">CFGS Administració de Sistemes Informàtics en Xarxa (ASIX)</div>
+      <div class="edu-school">2n curs del cicle — Actual</div>
+      <div class="edu-status ongoing">◉ En curs</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-badge">FINALITZAT</div>
+      <div class="edu-title">CFGS ASIX — 1r Curs</div>
+      <div class="edu-school">1r curs del cicle — Finalitzat</div>
+      <div class="edu-status">✓ Completat</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-badge">TITULAT</div>
+      <div class="edu-title">Gestió Administrativa</div>
+      <div class="edu-school">Cicle formatiu — Titulació oficial</div>
+      <div class="edu-status">✓ Titulat</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-badge">2019 – 2020</div>
+      <div class="edu-title">Educació Secundària Obligatòria (ESO)</div>
+      <div class="edu-school">IES Maria Rúbies</div>
+      <div class="edu-status">✓ Graduat</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Parlem</div>
+  <h2>Contacte</h2>
+  <div class="contact-wrapper">
+    <div class="contact-items">
+      <a href="tel:+34642004585" class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-text">
+          <span class="contact-label">TELÈFON</span>
+          <span class="contact-value">+34 642 00 45 85</span>
+        </div>
+      </a>
+      <a href="mailto:moadelmokaddam03@gmail.com" class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-text">
+          <span class="contact-label">EMAIL</span>
+          <span class="contact-value">moadelmokaddam03@gmail.com</span>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-text">
+          <span class="contact-label">UBICACIÓ</span>
+          <span class="contact-value">Lleida, Catalunya</span>
+        </div>
+      </div>
+    </div>
+    <div class="info-box">
+      <h3>Informació Addicional</h3>
+      <div class="info-row">
+        <span class="info-row-icon">📅</span>
+        <span class="info-row-label">Data de naixement</span>
+        <span class="info-row-val">04 / 04 / 2003</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-icon">🕐</span>
+        <span class="info-row-label">Disponibilitat</span>
+        <span class="info-row-val">Horària total</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-icon">🚗</span>
+        <span class="info-row-label">Carnet de conduir</span>
+        <span class="info-row-val">Tipus B (En procés)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-icon">🌍</span>
+        <span class="info-row-label">Idiomes nadius</span>
+        <span class="info-row-val">Àrab · Castellà</span>
+      </div>
+      <div class="info-row">
+        <span class="info-row-icon">🎓</span>
+        <span class="info-row-label">Fi dels estudis</span>
+        <span class="info-row-val">Maig 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Moad El Mokaddam</span>
+  <span>Lleida, Catalunya 🇪🇸</span>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = el.dataset.delay || 0;
+        setTimeout(() => {
+          el.classList.add('visible');
+          // Animate skill bars
+          const bar = el.querySelector('.skill-bar-fill');
+          if (bar) {
+            bar.style.width = bar.dataset.width + '%';
+          }
+        }, delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Timeline items
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.dataset.delay = i * 150;
+    observer.observe(el);
+  });
+
+  // Skill cards
+  document.querySelectorAll('.skill-card').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
+
+  // Language cards
+  document.querySelectorAll('.lang-card').forEach((el, i) => {
+    el.dataset.delay = i * 80;
+    observer.observe(el);
+  });
+
+  // Edu cards
+  document.querySelectorAll('.edu-card').forEach((el, i) => {
+    el.dataset.delay = i * 100;
+    observer.observe(el);
+  });
+
+  // Tags
+  document.querySelectorAll('.tag').forEach((el, i) => {
+    el.dataset.delay = i * 50;
+    observer.observe(el);
+  });
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 200) {
+        current = section.id;
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = '';
+      if (link.getAttribute('href') === '#' + current) {
+        link.style.color = 'var(--accent)';
+      }
+    });
+  });
+</script>
+</body>
+</html>
